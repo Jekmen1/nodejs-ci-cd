@@ -32,4 +32,5 @@ jobs:
       # ტესტების გაშვება
       - name: Run Tests
         run: npm test  # უშვებს 'npm test' ბრძანებას ტესტების გასაშვებად
+        shell: bash
 
