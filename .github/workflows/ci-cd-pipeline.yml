@@ -28,12 +28,13 @@ jobs:
       # დამატებითი პაკეტების ინსტალაცია
       - name: Install Dependencies
         run: npm install  # აინსტალირებს 'package.json'-ში მპაკეტებს
-
+        
+      # fix jest permissions
       - name: Fix Jest Permissions
         run: chmod +x ./node_modules/.bin/jest
       
       # ტესტების გაშვება
       - name: Run Tests
         run: npm test  # უშვებს 'npm test' ბრძანებას ტესტების გასაშვებად
-        shell: bash
+        shell: bash  # გამოყენოს ეს შელი გასაშვებად 
 
