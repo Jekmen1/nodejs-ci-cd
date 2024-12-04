@@ -1,0 +1,35 @@
+name: Node.js CI/CD Pipeline
+
+# პაიპლაინის გაშვების ტრიგერები, როცა კოდის ცვლილება ხდება main ბრენჩზე
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+# jobs განსაზღვრა, რომელიც უნდა შესრულდეს
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest  # იყენებს უახლეს Ubuntu-ს ვერსიას
+
+    steps:
+      # კოდის checkout რეპოზიტორიიდან
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Node.js-ის გარემოს დაყენება მითითებული ვერსიით
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Node.js-ის ვერსია, რომელიც დაყენდება
+
+      # დამატებითი პაკეტების ინსტალაცია
+      - name: Install Dependencies
+        run: npm install  # აინსტალირებს 'package.json'-ში მპაკეტებს
+
+      # ტესტების გაშვება
+      - name: Run Tests
+        run: npm test  # უშვებს 'npm test' ბრძანებას ტესტების გასაშვებად
+
